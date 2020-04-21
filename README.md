@@ -1,6 +1,6 @@
-# ReactNative Unit Testing using [**JEST**](https://jestjs.io/en/)!
+# ReactNative project using TypeScript for advance type safe!
 
-## **Getting started**
+<!-- ## **Getting started**
 ## About
 This demo is about how you can do a unit testing of ReactNative application.
 
@@ -50,4 +50,4 @@ In this performed tests are:
 * Sinon 
   * https://sinonjs.org/
 * Chai
-  * https://www.chaijs.com/api/bdd/
+  * https://www.chaijs.com/api/bdd/ -->
