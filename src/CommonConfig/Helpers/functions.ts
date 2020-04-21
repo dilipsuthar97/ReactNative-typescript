@@ -25,16 +25,14 @@ const X_HEIGHT = 812;
 
 const XSMAX_WIDTH = 414;
 const XSMAX_HEIGHT = 896;
-const isIPhoneX = () => Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS
+const isIPhoneX = (): boolean => Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS
     ? screenWidth === X_WIDTH && screenHeight === X_HEIGHT || screenWidth === XSMAX_WIDTH && screenHeight === XSMAX_HEIGHT
     : false;
 
 // Scales the item based on the screen height and baselineHeight
-export const scale = value => Math.round((screenHeight / baselineHeight) * value);
-export const StatusBarHeight = Platform.select({
+export const scale = (value: number): number => Math.round((screenHeight / baselineHeight) * value);
+export const StatusBarHeight: number = Platform.select({
   ios: isIPhoneX() ? 44 : 20,
   android: StatusBar.currentHeight,
   default: 0
 });
-
-export default null;

@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get('window');
 let screenHeight = width < height ? height : width
 let screenWidth = width < height ? width : height
 
-const Scale = (val) => {
+const Scale = (val: number) => {
   return scale(val)
 };
 

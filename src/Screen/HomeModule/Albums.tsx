@@ -1,14 +1,27 @@
 // =======>>>>>>>> LIBRARIES <<<<<<<<=======
-import React from 'react'
+import * as React from 'react'
 import { StyleSheet, View, Text, FlatList, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { AppStyle, Colors, Matrics, Scale } from '../../CommonConfig';
 import { getAlbumsRequest } from '../../Redux/Actions';
+import { MainReducer } from '../../Types/Reducers';
+import { AppState } from '../../Redux/Store';
+import { NavigationProp } from '@react-navigation/core';
+
+interface AlbumsProps {
+    navigation: NavigationProp<any>
+}
+
+interface AlbumsState {
+    isLoading: boolean
+}
+
+type Props = AlbumsProps & LinkStateProps & LinkDispatchProps
 
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
-class Albums extends React.Component {
+class Albums extends React.Component<Props, AlbumsState> {
     // =======>>>>>>> STATE DECLARATION <<<<<<<=======
     state = {
         isLoading: false
@@ -22,7 +35,7 @@ class Albums extends React.Component {
         this.props.getAlbumsRequest()
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: Props) {
         if (nextProps.Main.getAlbumsSuccess && this.state.isLoading) {
             this.setState({ isLoading: false })
         } else if (nextProps.Main.getAlbumsFail && this.state.isLoading) {
@@ -78,10 +91,16 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => {
-    return {
-        Main: state.Main
-    }
+interface LinkStateProps {
+    Main: MainReducer
 }
+
+interface LinkDispatchProps {
+    getAlbumsRequest: () => void
+}
+
+const mapStateToProps = (state: AppState, ownProps: AlbumsProps): LinkStateProps => ({
+    Main: state.Main
+})
 
 export default connect(mapStateToProps, { getAlbumsRequest })(Albums);

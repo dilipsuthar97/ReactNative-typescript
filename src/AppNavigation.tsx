@@ -54,7 +54,7 @@ class AppNavigation extends React.Component {
 }
 
 // =======>>>>>>>> MAIN TAB NAVIGATOR <<<<<<<<=======
-const TabNavigator = ({ navigation, route }) => {
+const TabNavigator = ({ navigation, route }: { navigation: any, route: any }) => {
     return (
         <Tab.Navigator
             initialRouteName='Posts'

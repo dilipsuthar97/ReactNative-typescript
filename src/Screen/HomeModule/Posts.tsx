@@ -1,15 +1,31 @@
 // =======>>>>>>>> LIBRARIES <<<<<<<<=======
-import React from 'react'
+import * as React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator, FlatList } from 'react-native';
-import { connect } from 'react-redux';
+import { connect, MapDispatchToProps } from 'react-redux';
 
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { AppStyle, Images, Scale, Colors } from '../../CommonConfig';
 import { getPostsRequest } from '../../Redux/Actions';
 import ItemPost from '../../Components/Item/ItemPost';
 
+// =======>>>>>>>> TYPES <<<<<<<<=======
+import { MainReducer } from '../../Types/Reducers';
+import { AppState } from '../../Redux/Store';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+interface PostsProps {
+    navigation: StackNavigationProp<any>
+}
+
+interface PostsState {
+    isLoading: boolean
+}
+
+type Props = PostsProps & LinkStateProps & LinkDispatchProps
+
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
-class Posts extends React.Component {
+class Posts extends React.Component<Props, PostsState> {
+
     // =======>>>>>>> STATE DECLARATION <<<<<<<=======
     state = {
         isLoading: false
@@ -23,7 +39,7 @@ class Posts extends React.Component {
         this.props.getPostsRequest();
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: Props) {
         if (nextProps.Main.getPostsSuccess && this.state.isLoading) {
             this.setState({ isLoading: false })
         } else if (nextProps.Main.getPostsFail && this.state.isLoading) {
@@ -37,7 +53,7 @@ class Posts extends React.Component {
             headerStyle: AppStyle.headerStyle,
             headerTitleStyle: AppStyle.headerTitleStyle,
             headerTitleAlign: 'center',
-            headerLeft: ({ onPress }) => {
+            headerLeft: () => {
                 // console.log('headerLeft props', props)
                 return (
                     <TouchableOpacity style={{marginLeft: Scale(16)}} onPress={() => this.props.navigation.openDrawer()}>
@@ -61,7 +77,7 @@ class Posts extends React.Component {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item, index}) => <ItemPost item={item} style={{
                         marginTop: index == 0 ? Scale(10) : 0,
-                        marginBottom: this.props.Main.data.posts.length - 1 == index ? Scale(10) : 0
+                        marginBottom: this.props.Main.data.posts ? this.props.Main.data.posts.length -1 == index ? Scale(10) : 0 : 0
                     }}/>}
                 />
                 : <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -89,10 +105,20 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => {
-    return {
-        Main: state.Main
-    }
+interface LinkStateProps {
+    Main: MainReducer
 }
 
-export default connect(mapStateToProps, { getPostsRequest })(Posts);
+interface LinkDispatchProps {
+    getPostsRequest: () => void
+}
+
+const mapStateToProps = (state: AppState, ownProps: PostsProps): LinkStateProps => ({
+    Main: state.Main
+})
+
+const mapDispatchToProps: LinkDispatchProps = {
+    getPostsRequest: () => (getPostsRequest())
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

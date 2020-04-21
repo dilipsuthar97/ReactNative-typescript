@@ -8,13 +8,15 @@ import {
     GET_PHOTOS_SUCCESS,
     GET_PHOTOS_FAILED
 } from '../Types';
+import { MainReducer } from '../../Types/Reducers';
+import { MainActions } from '../../Types/Actions';
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE: MainReducer = {
     error: null,
-    selected: null
+    data: {}
 }
 
-export default (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action: MainActions): MainReducer => {
     console.log(action);
     switch (action.type) {
         case GET_POSTS_SUCCESS:

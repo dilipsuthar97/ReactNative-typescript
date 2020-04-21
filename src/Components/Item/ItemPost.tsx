@@ -1,9 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import * as React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
 
 import { Scale, Colors, Matrics } from '../../CommonConfig';
+import { Post } from '../../Types/Post';
 
-const ItemPost = ({ item, style, onPress }) => {
+interface Props {
+    item: Post;
+    style: StyleProp<ViewStyle>;
+    onPress?: () => void
+}
+
+const ItemPost: React.FunctionComponent<Props> = ({ item, style, onPress }) => {
     return <TouchableOpacity style={[styles.container, style]} activeOpacity={0.5} onPress={onPress}>
         <Text style={styles.title} numberOfLines={2}>{item ? item.title : undefined}</Text>
         <Text style={styles.body} numberOfLines={3}>{item ? item.body : undefined}</Text>

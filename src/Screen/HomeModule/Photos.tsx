@@ -1,14 +1,27 @@
 // =======>>>>>>>> LIBRARIES <<<<<<<<=======
-import React from 'react'
+import * as React from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, FlatList, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { AppStyle, Colors, Matrics, Scale } from '../../CommonConfig';
 import { getPhotosRequest } from '../../Redux/Actions';
+import { NavigationProp } from '@react-navigation/core';
+import { MainReducer } from '../../Types/Reducers';
+import { AppState } from '../../Redux/Store';
+
+interface PhotosProps {
+    navigation: NavigationProp<any>
+}
+
+interface PhotosState {
+    isLoading: boolean
+}
+
+type Props = PhotosProps & LinkStateProps & LinkDispatchProps
 
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
-class Photos extends React.Component {
+class Photos extends React.Component<Props, PhotosState> {
     // =======>>>>>>> STATE DECLARATION <<<<<<<=======
     state = {
         isLoading: false
@@ -22,7 +35,7 @@ class Photos extends React.Component {
         this.props.getPhotosRequest()
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps: Props) {
         if (nextProps.Main.getPhotosSuccess && this.state.isLoading) {
             this.setState({ isLoading: false })
         } else if (nextProps.Main.getPhotosFail && this.state.isLoading) {
@@ -80,10 +93,16 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => {
-    return {
-        Main: state.Main
-    }
+interface LinkStateProps {
+    Main: MainReducer
 }
+
+interface LinkDispatchProps {
+    getPhotosRequest: () => void
+}
+
+const mapStateToProps = (state: AppState): LinkStateProps => ({
+    Main: state.Main
+})
 
 export default connect(mapStateToProps, { getPhotosRequest })(Photos);

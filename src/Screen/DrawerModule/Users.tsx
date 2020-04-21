@@ -6,7 +6,8 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { AppStyle, Images, Colors, Scale } from '../../CommonConfig';
 
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
-class Todos extends React.Component {
+class Users extends React.Component {
+	public props: any;
     // =======>>>>>>> STATE DECLARATION <<<<<<<=======
     state = {
 
@@ -36,7 +37,7 @@ class Todos extends React.Component {
     // =======>>>>>>>> RENDER INITIALIZE <<<<<<<<=======
     render() {
         return <View style={styles.container}>
-            <Text>Todos</Text>
+            <Text>Users</Text>
         </View>
     }
 }
@@ -49,4 +50,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Todos;
+export default Users;

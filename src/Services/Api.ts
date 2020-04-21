@@ -1,7 +1,11 @@
+import { Post } from "../Types/Post"
+import { Album } from "../Types/Album"
+import { Photo } from "../Types/Photo"
+
 const BASE_URL = "https://jsonplaceholder.typicode.com"
 
 export default {
-    async getPosts (params) {
+    async getPosts (): Promise<Post[]> {
         return fetch(`${BASE_URL + '/posts'}`, {
             method: 'GET'
         })
@@ -9,7 +13,7 @@ export default {
         .then(data => data)
     },
 
-    async getAlbums (params) {
+    async getAlbums (): Promise<Album[]> {
         return fetch(`${BASE_URL + '/albums'}`, {
             method: 'GET'
         })
@@ -17,7 +21,7 @@ export default {
         .then(data => data)
     },
 
-    async getPhotos (params) {
+    async getPhotos (): Promise<Photo[]> {
         return fetch(`${BASE_URL + '/photos'}`, {
             method: 'GET'
         })
