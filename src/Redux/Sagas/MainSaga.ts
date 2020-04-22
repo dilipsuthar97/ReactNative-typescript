@@ -17,7 +17,7 @@ import { Post } from '../../Types/Post';
 import { Album } from '../../Types/Album';
 import { Photo } from '../../Types/Photo';
 
-// it'll return state from reducer
+// it'll return root state from reducer
 export const getState = (state: AppState): AppState => state;
 
 export const getPostsSaga = function* getPostsSaga() {

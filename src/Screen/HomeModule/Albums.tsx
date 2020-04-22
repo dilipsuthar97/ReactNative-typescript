@@ -76,9 +76,8 @@ class Albums extends React.Component<Props, AlbumsState> {
     // =======>>>>>>>> RENDER INITIALIZE <<<<<<<<=======
     render() {
         console.log('Main: ', this.props.Main.data)
-        const rootStyle = this.state.isLoading ? [styles.container, {justifyContent: 'center', alignItems: 'center'}] : styles.container
 
-        return <View style={rootStyle}>
+        return <View style={this.state.isLoading ? {...styles.container, justifyContent: 'center', alignItems: 'center'} : styles.container}>
             {this.state.isLoading ? <ActivityIndicator size="large" color={Colors.PRIMARY_COLOR}/> : this.renderList()}
         </View>
     }

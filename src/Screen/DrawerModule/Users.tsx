@@ -5,9 +5,16 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { AppStyle, Images, Colors, Scale } from '../../CommonConfig';
 
+// =======>>>>>>>> TYPES <<<<<<<<=======
+import { StackNavigationProp } from '@react-navigation/stack';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+
+interface Props {
+    navigation: StackNavigationProp<any> & DrawerNavigationProp<any>
+}
+
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
-class Users extends React.Component {
-	public props: any;
+class Users extends React.Component<Props> {
     // =======>>>>>>> STATE DECLARATION <<<<<<<=======
     state = {
 

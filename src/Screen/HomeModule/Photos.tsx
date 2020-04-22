@@ -58,11 +58,11 @@ class Photos extends React.Component<Props, PhotosState> {
             ? <FlatList
                 data={this.props.Main.data.photos}
                 keyExtractor={(item, index) => item.id.toString()}
-                numColumns={3}
+                numColumns={5}
                 renderItem={({item, index}) => {
                     return <Image source={{uri: item.thumbnailUrl}} style={{
-                        height: Matrics.screenWidth / 3,
-                        width: Matrics.screenWidth / 3,
+                        height: Matrics.screenWidth / 5,
+                        width: Matrics.screenWidth / 5,
                         borderColor: Colors.WHITE,
                         borderWidth: Scale(1),
                         backgroundColor: Colors.LIGHT_GRAY
@@ -78,9 +78,8 @@ class Photos extends React.Component<Props, PhotosState> {
     // =======>>>>>>>> RENDER INITIALIZE <<<<<<<<=======
     render() {
         console.log('Main: ', this.props.Main.data)
-        const rootStyle = this.state.isLoading ? [styles.container, {justifyContent: 'center', alignItems: 'center'}] : styles.container
 
-        return <View style={rootStyle}>
+        return <View style={this.state.isLoading ? {...styles.container, justifyContent: 'center', alignItems: 'center'} : styles.container}>
             {this.state.isLoading ? <ActivityIndicator size="large" color={Colors.PRIMARY_COLOR}/> : this.renderList()}
         </View>
     }

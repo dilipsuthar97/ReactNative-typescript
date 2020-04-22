@@ -161,7 +161,6 @@
 				A91ECBB5E87C0AE7A0F4AD63 /* Pods-RNTestingJest_demoTests.debug.xcconfig */,
 				9F21AF39E588B27791910EBF /* Pods-RNTestingJest_demoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

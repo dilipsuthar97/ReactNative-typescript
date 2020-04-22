@@ -1,7 +1,6 @@
 // =======>>>>>>>> LIBRARIES <<<<<<<<=======
 import React from 'react';
-import { FunctionComponent } from 'react';
-import { TouchableOpacity, Animated, View, Text } from 'react-native';
+import { TouchableOpacity, View, Text, Animated } from 'react-native';
 
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { Colors, Scale, Images } from '../CommonConfig';
@@ -19,7 +18,7 @@ interface Props {
     state: TabNavigationState;
 }
 
-const Tabbar: FunctionComponent<Props> = ({ state, descriptors, navigation }) => {
+const Tabbar: React.FC<Props> = ({ state, descriptors, navigation }) => {
     return (
         <View style={{ flexDirection: 'row', height: Scale(56), backgroundColor: Colors.WHITE, alignItems: 'center', shadowColor: Colors.GRAY, shadowOpacity: 0.2}}>
             {state.routes.map((route, index) => {
@@ -42,15 +41,17 @@ const Tabbar: FunctionComponent<Props> = ({ state, descriptors, navigation }) =>
                             springValue1,
                             {
                                 toValue: 0.9,
-                                friction: 1
+                                friction: 1,
+                                useNativeDriver: true
                             }
-                        ).start()
+                        )
                     } else if (val == 1) {
                         Animated.spring(
                             springValue2,
                             {
                                 toValue: 0.9,
-                                friction: 1
+                                friction: 1,
+                                useNativeDriver: true
                             }
                         ).start()
                     } else if (val == 2) {
@@ -58,7 +59,8 @@ const Tabbar: FunctionComponent<Props> = ({ state, descriptors, navigation }) =>
                             springValue3,
                             {
                                 toValue: 0.9,
-                                friction: 1
+                                friction: 1,
+                                useNativeDriver: true
                             }
                         ).start()
                     } else if (val == 3) {
@@ -66,7 +68,8 @@ const Tabbar: FunctionComponent<Props> = ({ state, descriptors, navigation }) =>
                             springValue4,
                             {
                                 toValue: 0.9,
-                                friction: 1
+                                friction: 1,
+                                useNativeDriver: true
                             }
                         ).start()
                     }
@@ -75,6 +78,7 @@ const Tabbar: FunctionComponent<Props> = ({ state, descriptors, navigation }) =>
                     const event = navigation.emit({
                         type: 'tabPress',
                         target: route.key,
+                        canPreventDefault: true
                     });
                     spring(index)
                     console.log(index, "indexindex")

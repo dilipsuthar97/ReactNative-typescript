@@ -1,9 +1,15 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
 import { Scale, Colors } from '../CommonConfig';
 
-const Button = ({ title, onPress, buttonStyle }) => {
+interface Props {
+    title: string;
+    onPress: () => void;
+    buttonStyle: StyleProp<ViewStyle>
+}
+
+const Button: React.FC<Props> = ({ title, onPress, buttonStyle }) => {
 
     return (
         <TouchableOpacity style={[styles.container, buttonStyle]} onPress={onPress ? onPress : undefined}>

@@ -1,20 +1,22 @@
 // =======>>>>>>>> LIBRARIES <<<<<<<<=======
 import * as React from 'react'
 import { StyleSheet, View, Text, TouchableOpacity, Image, ActivityIndicator, FlatList } from 'react-native';
-import { connect, MapDispatchToProps } from 'react-redux';
+import { connect } from 'react-redux';
 
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { AppStyle, Images, Scale, Colors } from '../../CommonConfig';
 import { getPostsRequest } from '../../Redux/Actions';
 import ItemPost from '../../Components/Item/ItemPost';
+import SafeAreaView from 'react-native-safe-area-view';
 
 // =======>>>>>>>> TYPES <<<<<<<<=======
 import { MainReducer } from '../../Types/Reducers';
 import { AppState } from '../../Redux/Store';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 
 interface PostsProps {
-    navigation: StackNavigationProp<any>
+    navigation: StackNavigationProp<any> & DrawerNavigationProp<any>
 }
 
 interface PostsState {
@@ -34,6 +36,8 @@ class Posts extends React.Component<Props, PostsState> {
     // =======>>>>>>> LIFECYCLE METHODS <<<<<<<=======
     componentDidMount() {
         this.initHeader()
+
+        // setTimeout(() => this.props.navigation.openDrawer(), 1000)
 
         this.setState({ isLoading: true })
         this.props.getPostsRequest();
@@ -90,11 +94,14 @@ class Posts extends React.Component<Props, PostsState> {
     render() {
 
         console.log('Main: ', this.props.Main.data)
-        const rootStyle = this.state.isLoading ? [styles.container, {justifyContent: 'center', alignItems: 'center'}] : styles.container
-
-        return <View style={rootStyle}>
-            {this.state.isLoading ? <ActivityIndicator size="large" color={Colors.PRIMARY_COLOR}/> : this.renderPosts()}
-        </View>
+        
+        return (
+            <SafeAreaView style={AppStyle.safeArea}>
+                <View style={this.state.isLoading ? {...styles.container, justifyContent: 'center', alignItems: 'center'} : styles.container}>
+                    {this.state.isLoading ? <ActivityIndicator size="large" color={Colors.PRIMARY_COLOR}/> : this.renderPosts()}
+                </View>
+            </SafeAreaView>
+        )
     }
 }
 

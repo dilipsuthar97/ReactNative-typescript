@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { Colors, Scale, Matrics } from '.'
 
 const AppStyle = {
@@ -16,6 +17,10 @@ const AppStyle = {
     },
     headerStyle: {
         backgroundColor: Colors.PRIMARY_COLOR
+    },
+    safeArea: {
+        flex: 1,
+        backgroundColor: Colors.WHITE
     }
 }
 

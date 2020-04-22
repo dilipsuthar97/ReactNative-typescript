@@ -4,8 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import SafeAreaView from 'react-native-safe-area-view';
 
-import { Colors } from './CommonConfig'
+import { Colors, AppStyle } from './CommonConfig'
 import BottomTabBar from './Components/BottomTabBar';
 
 // =======>>>>>>>> SCREENS <<<<<<<<=======
@@ -29,26 +31,28 @@ class AppNavigation extends React.Component {
     // =======>>>>>>>> RENDER INITIALIZE <<<<<<<<=======
     render() {
         return (
-            <NavigationContainer>
-                <Drawer.Navigator
-                    hideStatusBar={false}
-                    statusBarAnimation={true}
-                    initialRouteName='Home'
-                    drawerPosition='left'
-                    drawerType='back'
-                    overlayColor={1}
-                    drawerStyle={{
-                        backgroundColor: Colors.WHITE,
-                    }}
-                    drawerContentOptions={{
-                        activeTintColor: Colors.PRIMARY_COLOR,
-                    }}
-                >
-                    <Drawer.Screen name='Home' component={TabNavigator}/>
-                    <Drawer.Screen name='Todos' component={TodosStack}/>
-                    <Drawer.Screen name='Users' component={UsersStack}/>
-                </Drawer.Navigator>
-            </NavigationContainer>
+            <SafeAreaProvider>
+                <NavigationContainer>
+                    <Drawer.Navigator
+                        hideStatusBar={true}
+                        statusBarAnimation='fade'
+                        initialRouteName='Home'
+                        drawerPosition='left'
+                        drawerType='back'
+                        overlayColor='1'
+                        drawerStyle={{
+                            backgroundColor: Colors.WHITE,
+                        }}
+                        drawerContentOptions={{
+                            activeTintColor: Colors.PRIMARY_COLOR,
+                        }}
+                    >
+                        <Drawer.Screen name='Home' component={TabNavigator}/>
+                        <Drawer.Screen name='Todos' component={TodosStack}/>
+                        <Drawer.Screen name='Users' component={UsersStack}/>
+                    </Drawer.Navigator>
+                </NavigationContainer>
+            </SafeAreaProvider>
         )
     }
 }
@@ -56,18 +60,17 @@ class AppNavigation extends React.Component {
 // =======>>>>>>>> MAIN TAB NAVIGATOR <<<<<<<<=======
 const TabNavigator = ({ navigation, route }: { navigation: any, route: any }) => {
     return (
-        <Tab.Navigator
-            initialRouteName='Posts'
-            backBehavior='initialRoute'
-            tabBar={BottomTabBar}
-            screenOptions={{
-                headerShown: true
-            }}
-        >
-            <Tab.Screen name='Posts' component={PostsStack} />
-            <Tab.Screen name='Albums' component={AlbumsStack} />
-            <Tab.Screen name='Photos' component={PhotosStack} />
-        </Tab.Navigator>
+        <SafeAreaView style={AppStyle.safeArea} forceInset={{top: 'never'}}>
+            <Tab.Navigator
+                initialRouteName='Posts'
+                backBehavior='initialRoute'
+                tabBar={BottomTabBar}
+            >
+                <Tab.Screen name='Posts' component={PostsStack} />
+                <Tab.Screen name='Albums' component={AlbumsStack} />
+                <Tab.Screen name='Photos' component={PhotosStack} />
+            </Tab.Navigator>
+        </SafeAreaView>
     )
 }
 

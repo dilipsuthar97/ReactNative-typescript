@@ -10,7 +10,7 @@ interface Props {
     onPress?: () => void
 }
 
-const ItemPost: React.FunctionComponent<Props> = ({ item, style, onPress }) => {
+const ItemPost: React.FC<Props> = ({ item, style, onPress }) => {
     return <TouchableOpacity style={[styles.container, style]} activeOpacity={0.5} onPress={onPress}>
         <Text style={styles.title} numberOfLines={2}>{item ? item.title : undefined}</Text>
         <Text style={styles.body} numberOfLines={3}>{item ? item.body : undefined}</Text>

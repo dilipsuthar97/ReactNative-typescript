@@ -1,6 +1,6 @@
 const Colors = {
-    PRIMARY_COLOR: '#ed242e',
-    PRIMARY_COLOR_LIGHT: 'rgba(237,36,46,0.2)',
+    PRIMARY_COLOR: '#294e80',
+    PRIMARY_COLOR_LIGHT: 'rgba(41,78,128,0.2)',
     WHITE: '#FFF',
     BLACK: '#000',
     MATEBLACK: '#343434',
