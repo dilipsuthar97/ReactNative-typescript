@@ -1,6 +1,6 @@
 import MainReducer from './MainReducer';
 
-let rootReducer = {
+const rootReducer = {
     Main: MainReducer
 }
 

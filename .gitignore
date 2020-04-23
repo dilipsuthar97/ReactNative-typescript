@@ -45,6 +45,7 @@ buck-out/
 # Jest
 #
 .jest/
+coverage/
 
 # fastlane
 #

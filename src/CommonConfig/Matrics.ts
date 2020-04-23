@@ -3,10 +3,10 @@ import { scale, StatusBarHeight } from './Helpers/functions';
 
 const { width, height } = Dimensions.get('window');
 
-let screenHeight = width < height ? height : width
-let screenWidth = width < height ? width : height
+const screenHeight: number = width < height ? height : width
+const screenWidth: number = width < height ? width : height
 
-const Scale = (val: number) => {
+const Scale = (val: number): number => {
   return scale(val)
 };
 

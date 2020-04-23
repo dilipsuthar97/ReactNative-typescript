@@ -16,8 +16,8 @@ const screenWidth = window.width;
 // };
 
 // The average resolution of common devices, based on a ~5" mobile screen.
-//const baselineHeight = screenHeight < 750 ? 680 : 800;
-const baselineHeight = screenHeight == 812 ? 800 : 680;
+// const baselineHeight = screenHeight < 750 ? 680 : 800;
+const baselineHeight: number = screenHeight == 812 ? 800 : 680;
 
 // Check for ios X device
 const X_WIDTH = 375;

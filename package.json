@@ -8,7 +8,8 @@
     "ios7": "react-native run-ios --simulator 'iPhone 7'",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "coverage": "jest --coverage",
+    "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.8.1",
@@ -32,22 +33,32 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
+    "@babel/preset-typescript": "^7.9.0",
     "@babel/runtime": "^7.8.7",
     "@react-native-community/eslint-config": "^0.0.7",
     "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.2",
     "@types/react": "^16.9.34",
     "@types/react-native": "^0.62.2",
     "@types/react-redux": "^7.1.7",
     "@types/react-test-renderer": "^16.9.2",
     "@types/redux-logger": "^3.0.7",
+    "@types/redux-mock-store": "^1.0.2",
     "babel-jest": "^25.1.0",
     "eslint": "^6.8.0",
-    "jest": "^25.1.0",
+    "jest": "^25.4.0",
     "js-to-ts-converter": "^0.16.3",
     "metro-react-native-babel-preset": "^0.58.0",
+    "prettier": "^2.0.5",
+    "react-addons-test-utils": "^15.6.2",
     "react-native-typescript-transformer": "^1.2.13",
     "react-test-renderer": "16.9.0",
+    "redux-mock-store": "^1.5.4",
     "ts-jest": "^25.4.0",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^9.0.0",
+    "tslint-react": "^5.0.0",
     "typescript": "^3.8.3"
   },
   "jest": {
