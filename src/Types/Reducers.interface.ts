@@ -1,10 +1,8 @@
 import { Post } from './Post.interface';
 import { Album } from './Album.interface';
 import { Photo } from './Photo.interface';
-import { AppState } from '../Redux/Store';
-import { PersistState } from 'redux-persist';
 
-export interface MainReducer {
+export interface MainReducerState {
 	error: Error | null;
 	data: {
 		posts?: Post[];

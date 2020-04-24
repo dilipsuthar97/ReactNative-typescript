@@ -16,9 +16,7 @@ import {
 	getPhotosFailed,
 } from '../Actions';
 import { AppState } from '../Store';
-import { Post } from '../../Types/Post.interface';
-import { Album } from '../../Types/Album.interface';
-import { Photo } from '../../Types/Photo.interface';
+import { Post } from 'src/Types/Post.interface';
 
 // it'll return root state from reducer
 export const getState = (state: AppState): AppState => state;
@@ -29,12 +27,12 @@ export const getPostsSaga = function* getPostsSaga(): any {
 
 	try {
 		console.log('---------------SAGA CALLING AVAILABILITY');
-		const response: Post[] = yield call(Api.getPosts);
+		const response = yield call(Api.getPosts);
 		console.log('getPostsSaga: response >>>>>> ', response);
 
 		yield put(getPostsSuccess(response));
 	} catch (err) {
-		// console.warn('--------------ERROR', err);
+		console.warn('--------------ERROR', err);
 		yield put(getPostsFailed(err));
 	}
 };
@@ -42,7 +40,7 @@ export const getPostsSaga = function* getPostsSaga(): any {
 export const getAlbumsSaga = function* getAlbumsSaga(): any {
 	try {
 		console.log('---------------SAGA CALLING AVAILABILITY');
-		const response: Album[] = yield call(Api.getAlbums);
+		const response = yield call(Api.getAlbums);
 		console.log('getPostsSaga: response >>>>>> ', response);
 
 		yield put(getAlbumsSuccess(response));
@@ -55,7 +53,7 @@ export const getAlbumsSaga = function* getAlbumsSaga(): any {
 export const getPhotosSaga = function* getPhotosSaga(): any {
 	try {
 		console.log('---------------SAGA CALLING AVAILABILITY');
-		const response: Photo[] = yield call(Api.getPhotos);
+		const response = yield call(Api.getPhotos);
 		console.log('getPostsSaga: response >>>>>> ', response);
 
 		yield put(getPhotosSuccess(response));

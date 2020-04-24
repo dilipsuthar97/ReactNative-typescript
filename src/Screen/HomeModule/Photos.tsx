@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { AppStyle, Colors, Matrics, Scale } from '../../CommonConfig';
 import { getPhotosRequest } from '../../Redux/Actions';
 import { NavigationProp } from '@react-navigation/core';
-import { MainReducer } from '../../Types/Reducers.interface';
+import { MainReducerState } from '../../Types/Reducers.interface';
 import { AppState } from '../../Redux/Store';
 
 interface PhotosProps {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 });
 
 interface LinkStateProps {
-	Main: MainReducer;
+	Main: MainReducerState;
 }
 
 interface LinkDispatchProps {

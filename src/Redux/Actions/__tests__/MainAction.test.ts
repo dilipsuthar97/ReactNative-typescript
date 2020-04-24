@@ -1,42 +1,41 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { getPostsRequest, getAlbumsRequest, getPhotosRequest } from '..';
+import { getPostsRequest, getPostsSuccess, getPostsFailed } from '..';
 import {
 	GET_POSTS_REQUEST,
-	GET_ALBUMS_REQUEST,
-	GET_PHOTOS_REQUEST,
+	GET_POSTS_SUCCESS,
+	GET_POSTS_FAILED,
 } from '../../Types';
+import { GetPostsMock } from '../../../Types/data/GetPostMock';
 
-describe('MainAction.js', () => {
-	describe('Action testing', () => {
-		test(`Create a ${GET_POSTS_REQUEST} action`, () => {
-			// You do it
-			expect(getPostsRequest()).toEqual({
-				type: GET_POSTS_REQUEST,
-			});
+// tests
+describe('getPosts actions', () => {
+	it('creates GetPostsRequest', () => {
+		const action = getPostsRequest();
 
-			// Jest do it
-			// expect(getPostsRequest()).toMatchSnapshot();
+		expect(action).toEqual({
+			type: GET_POSTS_REQUEST,
 		});
+	});
 
-		test(`Create a ${GET_ALBUMS_REQUEST} action`, () => {
-			// You do it
-			expect(getAlbumsRequest()).toEqual({
-				type: GET_ALBUMS_REQUEST,
-			});
+	it('creates GetPostsSuccess', () => {
+		const action = getPostsSuccess(GetPostsMock);
 
-			// Jest do it
-			// expect(getAlbumsRequest()).toMatchSnapshot();
+		expect(action).toEqual({
+			type: GET_POSTS_SUCCESS,
+			payload: GetPostsMock,
 		});
+	});
 
-		test(`Create a ${GET_PHOTOS_REQUEST} action`, () => {
-			// You do it
-			expect(getPhotosRequest()).toEqual({
-				type: GET_PHOTOS_REQUEST,
-			});
+	it('creates GetPostsFailed', () => {
+		const error = new Error('some error');
+		const action = getPostsFailed(error);
 
-			// Jest do it
-			// expect(getPhotosRequest()).toMatchSnapshot();
+		expect(action).toEqual({
+			type: GET_POSTS_FAILED,
+			payload: error,
 		});
 	});
 });
+
+// and so on for albums and photos...

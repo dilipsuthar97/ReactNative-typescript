@@ -5,7 +5,7 @@ import { Photo } from '../Types/Photo.interface';
 const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
 export default {
-	async getPosts(): Promise<Post[]> {
+	async getPosts(): Promise<any> {
 		return fetch(`${BASE_URL + '/posts'}`, {
 			method: 'GET',
 		})
@@ -13,7 +13,7 @@ export default {
 			.then((data) => data);
 	},
 
-	async getAlbums(): Promise<Album[]> {
+	async getAlbums(): Promise<any> {
 		return fetch(`${BASE_URL + '/albums'}`, {
 			method: 'GET',
 		})
@@ -21,7 +21,7 @@ export default {
 			.then((data) => data);
 	},
 
-	async getPhotos(): Promise<Photo[]> {
+	async getPhotos(): Promise<any> {
 		return fetch(`${BASE_URL + '/photos'}`, {
 			method: 'GET',
 		})

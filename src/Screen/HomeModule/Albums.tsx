@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 // =======>>>>>>>> ASSETS <<<<<<<<=======
 import { AppStyle, Colors, Matrics, Scale } from '../../CommonConfig';
 import { getAlbumsRequest } from '../../Redux/Actions';
-import { MainReducer } from '../../Types/Reducers.interface';
+import { MainReducerState } from '../../Types/Reducers.interface';
 import { AppState } from '../../Redux/Store';
 import { NavigationProp } from '@react-navigation/core';
 
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
 });
 
 interface LinkStateProps {
-	Main: MainReducer;
+	Main: MainReducerState;
 }
 
 interface LinkDispatchProps {

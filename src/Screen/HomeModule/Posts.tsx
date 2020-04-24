@@ -18,7 +18,7 @@ import ItemPost from '../../Components/Item/ItemPost';
 import SafeAreaView from 'react-native-safe-area-view';
 
 // =======>>>>>>>> TYPES <<<<<<<<=======
-import { MainReducer } from '../../Types/Reducers.interface';
+import { MainReducerState } from '../../Types/Reducers.interface';
 import { AppState } from '../../Redux/Store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
 });
 
 interface LinkStateProps {
-	Main: MainReducer;
+	Main: MainReducerState;
 	_persist: PersistState;
 }
 

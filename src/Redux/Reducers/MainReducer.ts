@@ -6,15 +6,20 @@ import {
 	GET_PHOTOS_SUCCESS,
 	GET_PHOTOS_FAILED,
 } from '../Types';
-import { MainReducer } from '../../Types/Reducers.interface';
-import { MainActions } from '../../Types/Actions.interface';
+import { MainReducerState } from '../../Types/Reducers.interface';
+import { MainActions, AppActions } from '../../Types/Actions.interface';
+import { Reducer } from 'react';
+import { Action } from 'redux';
 
-export const INITIAL_STATE: MainReducer = {
+export const INITIAL_STATE: MainReducerState = {
 	error: null,
 	data: {},
 };
 
-export default (state = INITIAL_STATE, action: MainActions): MainReducer => {
+export default (
+	state = INITIAL_STATE,
+	action: MainActions
+): MainReducerState => {
 	console.log(action);
 	switch (action.type) {
 		case GET_POSTS_SUCCESS:
