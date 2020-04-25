@@ -19,6 +19,7 @@ const mockStore = configureMockStore([sagaMiddleware]);
 
 // tests
 describe('getPostsRequest', () => {
+	// success test with store
 	it(`creates ${GET_POSTS_REQUEST} ${GET_POSTS_SUCCESS} after successfully fetching posts`, (done) => {
 		// mocking api call
 		Api.getPosts = jest.fn(() => Promise.resolve(GetPostsMock));
@@ -47,6 +48,7 @@ describe('getPostsRequest', () => {
 		store.dispatch(getPostsRequest());
 	});
 
+	// failure test with store
 	it(`creates ${GET_POSTS_REQUEST} ${GET_POSTS_FAILED} after failing to fetching posts`, (done) => {
 		const error = new Error('some error');
 		Api.getPosts = jest.fn(() => Promise.reject(error));

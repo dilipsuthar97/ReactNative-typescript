@@ -25,18 +25,22 @@ import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { PersistState } from 'redux-persist';
 import { Post } from 'src/Types/Post.interface';
 
+// type inteface for props
 interface PostsProps {
 	navigation: (StackNavigationProp<any> & DrawerNavigationProp<any>) | null;
 }
 
+// type interface for state
 interface PostsState {
 	isLoading: boolean;
 }
 
+// Link all props here
 type Props = PostsProps & LinkStateProps & LinkDispatchProps;
 
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
 class Posts extends React.Component<Props, PostsState> {
+	// Assign props & state to component
 	// =======>>>>>>> STATE DECLARATION <<<<<<<=======
 	state: PostsState = {
 		isLoading: false,
@@ -61,12 +65,19 @@ class Posts extends React.Component<Props, PostsState> {
 	}
 
 	// =======>>>>>>> METHODS INITIALIZE <<<<<<<=======
+	/**
+	 * Return list of posts
+	 * @return ArrayList<Post[]>
+	 */
 	public getPosts = (): Post[] | undefined => {
 		if (this.props.Main.data.posts !== undefined) {
 			return this.props.Main.data.posts;
 		}
 	};
 
+	/**
+	 * method for header initialization
+	 */
 	initHeader() {
 		const { navigation } = this.props;
 
@@ -96,10 +107,16 @@ class Posts extends React.Component<Props, PostsState> {
 			});
 	}
 
+	/**
+	 * FlatList item seperator view
+	 */
 	itemSeparator() {
 		return <View style={{ height: Scale(10) }} />;
 	}
 
+	/**
+	 * Render list of posts
+	 */
 	renderPosts() {
 		return this.props.Main.data && this.props.Main.data.posts ? (
 			<FlatList
@@ -166,11 +183,13 @@ const styles = StyleSheet.create({
 	},
 });
 
+// type interface for mapStateToProps
 interface LinkStateProps {
 	Main: MainReducerState;
 	_persist: PersistState;
 }
 
+// type interface for mapDispatchToProps
 interface LinkDispatchProps {
 	getPostsRequest: () => void;
 }

@@ -16,18 +16,22 @@ import { MainReducerState } from '../../Types/Reducers.interface';
 import { AppState } from '../../Redux/Store';
 import { NavigationProp } from '@react-navigation/core';
 
+// type inteface for props
 interface AlbumsProps {
 	navigation: NavigationProp<any>;
 }
 
+// type interface for state
 interface AlbumsState {
 	isLoading: boolean;
 }
 
+// Link all props here
 type Props = AlbumsProps & LinkStateProps & LinkDispatchProps;
 
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
 class Albums extends React.Component<Props, AlbumsState> {
+	// Assign props & state to component
 	// =======>>>>>>> STATE DECLARATION <<<<<<<=======
 	state: AlbumsState = {
 		isLoading: false,
@@ -50,6 +54,9 @@ class Albums extends React.Component<Props, AlbumsState> {
 	}
 
 	// =======>>>>>>> METHODS INITIALIZE <<<<<<<=======
+	/**
+	 * method for header initialization
+	 */
 	initHeader() {
 		this.props.navigation.setOptions({
 			headerStyle: AppStyle.headerStyle,
@@ -57,10 +64,16 @@ class Albums extends React.Component<Props, AlbumsState> {
 		});
 	}
 
+	/**
+	 * FlatList item seperator view
+	 */
 	itemSeparator() {
 		return <View style={{ height: Scale(10) }} />;
 	}
 
+	/**
+	 * Render list of posts
+	 */
 	renderList() {
 		return this.props.Main.data && this.props.Main.data.albums ? (
 			<FlatList
@@ -121,10 +134,12 @@ const styles = StyleSheet.create({
 	},
 });
 
+// type interface for mapStateToProps
 interface LinkStateProps {
 	Main: MainReducerState;
 }
 
+// type interface for mapDispatchToProps
 interface LinkDispatchProps {
 	getAlbumsRequest: () => void;
 }

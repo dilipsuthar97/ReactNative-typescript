@@ -1,13 +1,12 @@
 import Api from '../Api';
-import {
-	GetPostsMock,
-	GetAlbumsMock,
-	GetPhotosMock,
-} from '../../Types/data/GetPostMock';
+import { GetPostsMock } from '../../Types/data/GetPostMock';
+import { GetAlbumsMock } from '../../Types/data/GetAlbumMock';
+import { GetPhotosMock } from '../../Types/data/GetPhotoMock';
 
 // test
 describe('getPosts', () => {
 	beforeEach(() => {
+		// mocking api requests for success
 		Api.getPosts = jest.fn(() => Promise.resolve(GetPostsMock));
 		Api.getAlbums = jest.fn(() => Promise.resolve(GetAlbumsMock));
 		Api.getPhotos = jest.fn(() => Promise.resolve(GetPhotosMock));

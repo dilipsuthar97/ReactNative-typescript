@@ -8,8 +8,6 @@ import {
 } from '../Types';
 import { MainReducerState } from '../../Types/Reducers.interface';
 import { MainActions, AppActions } from '../../Types/Actions.interface';
-import { Reducer } from 'react';
-import { Action } from 'redux';
 
 export const INITIAL_STATE: MainReducerState = {
 	error: null,

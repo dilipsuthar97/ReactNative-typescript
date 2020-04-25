@@ -17,18 +17,22 @@ import { NavigationProp } from '@react-navigation/core';
 import { MainReducerState } from '../../Types/Reducers.interface';
 import { AppState } from '../../Redux/Store';
 
+// type inteface for props
 interface PhotosProps {
 	navigation: NavigationProp<any>;
 }
 
+// type interface for state
 interface PhotosState {
 	isLoading: boolean;
 }
 
+// Link all props here
 type Props = PhotosProps & LinkStateProps & LinkDispatchProps;
 
 // =======>>>>>>>> CLASS DECLARATION <<<<<<<<=======
 class Photos extends React.Component<Props, PhotosState> {
+	// Assign props & state to component
 	// =======>>>>>>> STATE DECLARATION <<<<<<<=======
 	state: PhotosState = {
 		isLoading: false,
@@ -51,6 +55,9 @@ class Photos extends React.Component<Props, PhotosState> {
 	}
 
 	// =======>>>>>>> METHODS INITIALIZE <<<<<<<=======
+	/**
+	 * method for header initialization
+	 */
 	initHeader() {
 		this.props.navigation.setOptions({
 			headerStyle: AppStyle.headerStyle,
@@ -58,6 +65,9 @@ class Photos extends React.Component<Props, PhotosState> {
 		});
 	}
 
+	/**
+	 * Render list of posts
+	 */
 	renderList() {
 		console.log('renderList: ', this.props.Main.data.photos);
 		return this.props.Main.data && this.props.Main.data.photos ? (
@@ -120,10 +130,12 @@ const styles = StyleSheet.create({
 	},
 });
 
+// type interface for mapStateToProps
 interface LinkStateProps {
 	Main: MainReducerState;
 }
 
+// type interface for mapDispatchToProps
 interface LinkDispatchProps {
 	getPhotosRequest: () => void;
 }

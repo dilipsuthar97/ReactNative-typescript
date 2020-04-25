@@ -1,10 +1,10 @@
-import { MainReducerState } from '../../../Types/Reducers.interface';
 import { GetPostsMock } from '../../../Types/data/GetPostMock';
 import MainReducer, { INITIAL_STATE } from '../MainReducer';
 import { getPostsSuccess, getPostsFailed } from '../../Actions';
 import { GET_POSTS_SUCCESS, GET_POSTS_FAILED } from '../../Types';
 
 describe('MainReducer action type responses for', () => {
+	// test reducer with success case
 	describe(`case ${GET_POSTS_SUCCESS}`, () => {
 		const data = GetPostsMock;
 		const action = getPostsSuccess(data);
@@ -19,6 +19,7 @@ describe('MainReducer action type responses for', () => {
 		});
 	});
 
+	// test reducer with failure case
 	describe(`case ${GET_POSTS_FAILED}`, () => {
 		const error = new Error('some error');
 		const action = getPostsFailed(error);
